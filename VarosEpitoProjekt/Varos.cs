@@ -9,28 +9,31 @@ namespace VarosEpitoProjekt
     class Varos
     {
         public string Nev { get; }
+
+        private int lakosok;
         public int Lakosok
         {
-            get { return Lakosok; }
+            get { return lakosok; }
             set
             {
-                if (Lakosok > value)
+                if (lakosok > value)
                     Console.WriteLine("Hiba! A lakosok száma nem csökkenhet!");
-                else if (Lakosok > MaxLakosok)
+                else if (lakosok > MaxLakosok)
                     Console.WriteLine("Hiba! A lakosok száma nem lépheti át a maximumot!");
                 else
-                    Lakosok = value;
+                    lakosok = value;
             }
         }
+        private int hazak;
         public int Hazak
         {
-            get { return Hazak; }
+            get => hazak;
             set
             {
-                if (MaxLakosok < Lakosok)
+                if (MaxLakosok < lakosok)
                     Console.WriteLine("Hiba! A maximum lakosok száma nem lehet kisebb, mint a lakosok!");
                 else
-                    Hazak = value;
+                    hazak = value;
             }
         }
         public int Uzletek { get; set; }
@@ -87,8 +90,8 @@ namespace VarosEpitoProjekt
 
         public override string ToString()
         {
-            return $"{Nev} - Lakosok: {Lakosok}/{MaxLakosok} - Üzletek: {Uzletek} - Alapterület:" +
-                $"{Alapterulet} m²";
+            return $"{Nev,-10} - Lakosok: {Lakosok,-4}/{MaxLakosok,4} - Üzletek: {Uzletek,2} - Alapterület:" +
+                $" {Alapterulet,7} m²";
         }
     }
 }
