@@ -17,9 +17,9 @@ namespace VarosEpitoProjekt
             set
             {
                 if (lakosok > value)
-                    Console.WriteLine("Hiba! A lakosok száma nem csökkenhet!");
-                else if (lakosok > MaxLakosok)
-                    Console.WriteLine("Hiba! A lakosok száma nem lépheti át a maximumot!");
+                    Console.WriteLine("\n\tHiba! A lakosok száma nem csökkenhet!");
+                else if (value > MaxLakosok)
+                    Console.WriteLine("\n\tHiba! A lakosok száma nem lépheti át a maximumot!");
                 else
                     lakosok = value;
             }
@@ -31,7 +31,7 @@ namespace VarosEpitoProjekt
             set
             {
                 if (MaxLakosok < lakosok)
-                    Console.WriteLine("Hiba! A maximum lakosok száma nem lehet kisebb, mint a lakosok!");
+                    Console.WriteLine("\n\tHiba! A maximum lakosok száma nem lehet kisebb, mint a lakosok!");
                 else
                     hazak = value;
             }
@@ -73,7 +73,7 @@ namespace VarosEpitoProjekt
                 else
                 {
                     Uzletek = maxUzlet;
-                    Console.WriteLine("Több üzletet már nem építhet!");
+                    Console.WriteLine("\n\tTöbb üzletet már nem építhet!");
                 }
             }
         }

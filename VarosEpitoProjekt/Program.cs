@@ -26,7 +26,7 @@ namespace VarosEpitoProjekt
                 Console.WriteLine("\n\tMenü");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\n\t1 -  Lakosokat betelepíteni");
+                Console.WriteLine("\n\t1 - Lakosokat betelepíteni");
                 Console.WriteLine("\t2 - Házat építeni");
                 Console.WriteLine("\t3 - Üzletet építeni");
                 Console.WriteLine("\t4 - Kilépés");
@@ -112,7 +112,7 @@ namespace VarosEpitoProjekt
                         Console.ResetColor();
                         Console.ReadKey();
                     }
-                    Console.Clear();                 
+                    Console.Clear();
                 }
                 catch (Exception e)
                 {
@@ -123,7 +123,112 @@ namespace VarosEpitoProjekt
 
             jatekosVarosa = new Varos(jatekosVarosNev, jatekosVarosMeret);
 
+            int korszamlalo = 0;
 
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("\nA többi város: \n");
+                for (int i = 0; i < varosLista.Count; i++)
+                {
+                    Console.WriteLine("\t" + (i + 1) + ". " + varosLista[i]);
+                    Console.WriteLine();
+                }
+                Console.WriteLine("Az Ön városa:");
+                Console.WriteLine($"\n\t{varosLista.Count + 1}. {jatekosVarosa}");
+                Console.WriteLine("\nNyomjon egy ENTER-t a menü megjelenítéséhez!");
+                if (korszamlalo == 2)
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n\tA játék végéhez értünk!");
+                    varosLista.Add(jatekosVarosa);
+                    varosLista.Sort((x, y) => x.Alapterulet.CompareTo(y.Alapterulet));
+                    foreach (var item in varosLista)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("A győztes(akinek a legnagyobb a területe): "
+                        +varosLista[varosLista.Count-1]);
+
+                    var yesNO = MessageBox.Show("Szeretne új játékot kezdeni?", "A játék vége!", MessageBoxButtons.YesNo);
+                    if (yesNO == DialogResult.Yes)
+                    {
+                        Application.Restart();
+                        Environment.Exit(0);
+                    }
+                    else
+                        Environment.Exit(0);
+                }
+                Console.ReadKey();
+                int menuPont;
+                do
+                {
+                    menuPont = menu();
+
+                    switch (menuPont)
+                    {
+                        case 1:
+                            int lakos = 0;
+                            bool beker = false;
+                            do
+                            {
+                                try
+                                {
+                                    Console.Write("\tMennyi lakost szeretne betelepítemi?");
+                                    beker = int.TryParse(Console.ReadLine(), out lakos);
+                                    while (!beker)
+                                    {
+                                        MessageBox.Show("Hiba, csak számot adhat meg!");
+                                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                        Console.Write(new string(' ', Console.BufferWidth));
+                                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                        break;
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e);
+                                }
+                            } 
+                            while (!beker);
+                            jatekosVarosa.Lakosok += lakos;
+                            break;
+                        case 2:
+                            Random r = new Random();
+
+                            jatekosVarosa.Hazak += r.Next(10, 20);
+
+                            break;
+                        case 3:
+                            jatekosVarosa.uzletetEpit(10);
+                            break;
+                        case 4:
+                            MessageBox.Show("Köszönjük, hogy részt vett a játékban");
+                            Environment.Exit(0); break;
+                    }
+                }
+                while (menuPont == 4);
+                korszamlalo++;
+                Console.WriteLine("\n\tNyomjon egy ENTER-t a folytatáshoz!");
+                Console.ReadKey();
+                if (korszamlalo % 2 == 0)
+                {
+                    foreach (var item in varosLista)
+                    {
+                        item.Hazak += 15;
+                        item.Lakosok += 10;
+                    }
+                }
+                else
+                {
+                    foreach (var item in varosLista)
+                    {
+                        item.uzletetEpit(10);
+                        item.Lakosok += 20;
+                    }
+                }               
+            }
+            while (menuPont != 4);
 
             Console.ReadLine();
         }
