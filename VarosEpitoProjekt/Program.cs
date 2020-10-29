@@ -10,7 +10,11 @@ namespace VarosEpitoProjekt
     {
         static void Main(string[] args)
         {
-            
+            var v = new Varos("asd", 3);
+
+            Console.WriteLine(v);
+
+            Console.ReadLine();
         }
     }
 }
