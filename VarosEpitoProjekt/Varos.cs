@@ -9,8 +9,30 @@ namespace VarosEpitoProjekt
     class Varos
     {
         public string Nev { get; }
-        public int Lakosok { get; set; }
-        public int Hazak { get; set; }
+        public int Lakosok
+        {
+            get { return Lakosok; }
+            set
+            {
+                if (Lakosok > value)
+                    Console.WriteLine("Hiba! A lakosok száma nem csökkenhet!");
+                else if (Lakosok > MaxLakosok)
+                    Console.WriteLine("Hiba! A lakosok száma nem lépheti át a maximumot!");
+                else
+                    Lakosok = value;
+            }
+        }
+        public int Hazak
+        {
+            get { return Hazak; }
+            set
+            {
+                if (MaxLakosok < Lakosok)
+                    Console.WriteLine("Hiba! A maximum lakosok száma nem lehet kisebb, mint a lakosok!");
+                else
+                    Hazak = value;
+            }
+        }
         public int Uzletek { get; set; }
         public int MaxLakosok => Hazak * 6;
         public double Alapterulet => Hazak * 110 + Uzletek * 85.5;
