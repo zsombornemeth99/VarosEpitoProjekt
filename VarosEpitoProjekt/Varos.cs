@@ -64,7 +64,7 @@ namespace VarosEpitoProjekt
         public void uzletetEpit(int db)
         {
             if (db <= 0)
-                throw new ArgumentException("Csak pozitív számú üzletet lehet építeni!");
+                Console.WriteLine(new ArgumentException("Csak pozitív számú üzletet lehet építeni!"));
             else
             {
                 int maxUzlet = (int)Math.Floor((double)(Lakosok / 20));

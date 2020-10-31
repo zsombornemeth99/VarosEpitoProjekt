@@ -137,7 +137,7 @@ namespace VarosEpitoProjekt
                 Console.WriteLine("Az Ön városa:");
                 Console.WriteLine($"\n\t{varosLista.Count + 1}. {jatekosVarosa}");
                 Console.WriteLine("\nNyomjon egy ENTER-t a menü megjelenítéséhez!");
-                if (korszamlalo == 2)
+                if (korszamlalo == 20)
                 {
                     Console.Clear();
                     Console.WriteLine("\n\tA játék végéhez értünk!");
@@ -149,7 +149,7 @@ namespace VarosEpitoProjekt
                         Console.WriteLine(item);
                     }
                     Console.WriteLine("A győztes(akinek a legnagyobb a területe): "
-                        + eredmeny[eredmeny.Count-1]);
+                        + eredmeny[eredmeny.Count - 1]);
 
                     var yesNO = MessageBox.Show("Szeretne új játékot kezdeni?", "A játék vége!", MessageBoxButtons.YesNo);
                     if (yesNO == DialogResult.Yes)
@@ -190,7 +190,7 @@ namespace VarosEpitoProjekt
                                 {
                                     Console.WriteLine(e);
                                 }
-                            } 
+                            }
                             while (!beker);
                             jatekosVarosa.Lakosok += lakos;
                             break;
@@ -224,10 +224,10 @@ namespace VarosEpitoProjekt
                 {
                     foreach (var item in varosLista)
                     {
-                        item.uzletetEpit(10);
+                        item.Uzletek += 10;
                         item.Lakosok += 20;
                     }
-                }               
+                }
             }
             while (menuPont != 4);
 
