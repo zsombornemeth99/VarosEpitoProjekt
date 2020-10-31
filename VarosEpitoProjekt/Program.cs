@@ -142,13 +142,14 @@ namespace VarosEpitoProjekt
                     Console.Clear();
                     Console.WriteLine("\n\tA játék végéhez értünk!");
                     varosLista.Add(jatekosVarosa);
-                    varosLista.Sort((x, y) => x.Alapterulet.CompareTo(y.Alapterulet));
-                    foreach (var item in varosLista)
+                    //terület egyenlőség esetén ABC sorrendben határozza meg a győztest
+                    var eredmeny = varosLista.OrderBy(x => x.Alapterulet).ThenBy(y => y.Nev).ToList();
+                    foreach (var item in eredmeny)
                     {
                         Console.WriteLine(item);
                     }
                     Console.WriteLine("A győztes(akinek a legnagyobb a területe): "
-                        +varosLista[varosLista.Count-1]);
+                        + eredmeny[eredmeny.Count-1]);
 
                     var yesNO = MessageBox.Show("Szeretne új játékot kezdeni?", "A játék vége!", MessageBoxButtons.YesNo);
                     if (yesNO == DialogResult.Yes)
